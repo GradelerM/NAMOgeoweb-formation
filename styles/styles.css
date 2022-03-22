@@ -1,6 +1,8 @@
 :root {
-    --sky-dark: #075985;
-    --sky-light: #bae6fd;
+    --main: #586E75;
+    --black: #161F22;
+    --light: #FDF6E3;
+    --link: #268BD2;
 }
 
 html, body {
@@ -8,17 +10,57 @@ html, body {
     width: 100%;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 
     font-family: 'Inconsolata', monospace;
-    color: red;
+    color: var(--black);
 }
 
+body {
+    background-color: var(--light);
+}
+
+/* Fonts */
+
+.inconsolata {
+    font-family: 'Inconsolata', monospace;
+}
+
+.lato {
+    font-family: 'Lato', sans-serif;
+}
+
+.leaguegothic {
+    font-family: 'League Gothic', sans-serif;
+}
+
+/* Spacing */
+.margins {
+    margin-left: 12em;
+    margin-right: 12em;
+}
+
+/* Nav */
+
 #nav {
-    background-color: var(--sky-dark);
+    background-color: var(--main);
+}
+
+#nav > ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* Page */
+
+.wrapper {
+
 }
 
 .page-title {
-
+    font-family: 'League Gothic', sans-serif;
+    font-size: 3em;
+    color: var(--main);
 }
 
 .page-content {

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title></title>
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/solarized.css" id="theme" />
+    <link rel="stylesheet" href="plugin/highlight/zenburn.css" />
+	<link rel="stylesheet" href="css/layout.css" />
+	<link rel="stylesheet" href="plugin/customcontrols/style.css">
+
+
+    <script defer src="dist/fontawesome/all.min.js"></script>
+
+	<script type="text/javascript">
+		var forgetPop = true;
+		function onPopState(event) {
+			if(forgetPop){
+				forgetPop = false;
+			} else {
+				parent.postMessage(event.target.location.href, "app://obsidian.md");
+			}
+        }
+		window.onpopstate = onPopState;
+		window.onmessage = event => {
+			if(event.data == "reload"){
+				window.document.location.reload();
+			}
+			forgetPop = true;
+		}
+
+		function fitElements(){
+			const itemsToFit = document.getElementsByClassName('fitText');
+			for (const item in itemsToFit) {
+				if (Object.hasOwnProperty.call(itemsToFit, item)) {
+					var element = itemsToFit[item];
+					fitElement(element,1, 1000);
+					element.classList.remove('fitText');
+				}
+			}
+		}
+
+		function fitElement(element, start, end){
+
+			const size = (end + start) / 2;
+			element.style.fontSize = `${size}px`;
+
+			if(Math.abs(start - end) < 1){
+				return;
+			}
+
+			if(element.scrollHeight > element.offsetHeight){
+				fitElement(element, start, size);
+			} else {
+				fitElement(element, size, end);
+			}		
+		}
+
+
+		document.onreadystatechange = () => {
+			fitElements();
+			if (document.readyState === 'complete') {
+				if (window.location.href.indexOf("?export") != -1){
+					parent.postMessage(event.target.location.href, "app://obsidian.md");
+				}
+				if (window.location.href.indexOf("print-pdf") != -1){
+					let stateCheck = setInterval(() => {
+						clearInterval(stateCheck);
+						window.print();
+					}, 250);
+				}
+			}
+	};
+
+
+        </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">
+
+<style>
+	
+	h4 {
+		opacity: 0.5;
+		font-style: italic;
+	}	
+	
+	p, ul, li {
+		font-size: 1.6rem;
+	}
+	
+	.with-border {
+		margin-bottom: 2rem;
+		padding: 1rem;
+		border: 1px solid;
+		border-radius: 1rem;
+		font-size: 0.9em;
+	}
+	
+	.source {
+		opacity: 0.5;
+		size: 0.5em;
+	}
+</style>
+
+***
+## Docker et docker-compose
+***
+</script></section><section  data-markdown><script type="text/template">## Docker et docker-compose
+***
+
+- Un mot sur les applications web
+- Machines virtuelles et conteneurs
+- Docker et Docker Compose
+- L’exemple de NAMO GeoWeb
+</script></section><section  data-markdown><script type="text/template">## Un mot sur les applications web
+***
+
+- Une application web fonctionne via un échange entre un **serveur** qui héberge l’application et un **client** qui consulte cette application.
+
+- _Exemple : le site www.geoportail.gouv.fr est hébergé sur un serveur à cette adresse, et il est consulté par des clients, vos ordinateurs._
+
+- Il faut donc deux choses :
+	- un **serveur** sur la machine serveur _(Apache, Nginx)_
+	- un **navigateur** sur la machine client _(Google Chrome, Firefox)_
+</script></section><section  data-markdown><script type="text/template">## Comment servir une application web
+***
+
+- La pluart du temps, un serveur est déjà prêt à accueillir l’application (service d’hébergement en ligne, service informatique ayant préparé le serveur…)
+
+- Si on souhaite déployer nous-même une application pour la tester ou la mettre en production, il existe principalement deux solutions
+
+	- les machines virtuelles (VM)
+	- les conteneurs
+</script></section><section  data-markdown><script type="text/template">## Les machines virtuelles
+***
+
+- Il faut voir une machine virtuelle comme un ordinateur portable, un smartphone, etc. qui serait **dématérialisé** (sans composants matériels). Elle possède un processeur, de la mémoire, des disques pour stocker les données, peut se connecter à internet…
+
+- Outils de création de machines virtuelles : VirtualBox, VMware…
+
+- _Exemple : en téléchargeant VirtualBox, je peux créer une machine virtuelle sous Linux sur mon ordinateur qui est sous Windows._
+</script></section><section  data-markdown><script type="text/template">## Les machines virtuelles - schémas
+***
+
+<p style="line-height: 0" class="reset-paragraph"><img src="NAMO/Notes/Formation NAMO - contents/attachments/virtual-machine-diagram.svg" alt="" ></img></p>
+
+
+Source : microsoft.com <!-- .element: class="source" -->
+</script></section><section  data-markdown><script type="text/template">## Serveur sur machine virtuelle
+***
+
+Si on voulait créer un serveur pour l’application NAMO GeoWeb sur une machine virtuelle, il faudrait :
+
+- créer la machine (avec des caractéristiques suffisantes pour faire tourner l’application)
+- installer et configurer un serveur web (_Apache, Nginx_)
+- ajouter le code source de NAMO GeoWeb au serveur
+- installer et configurer la base de données PostgreSQL
+- la connecter au serveur
+- etc.
+</script></section><section  data-markdown><script type="text/template">## Incovénients des VM
+***
+
+- Multiplier les machines virtuelles sur une machine hôte est très demandeur :
+	- les ressources sont divisées entre les différentes machines
+	- il y a autants de systèmes d’exploitation (OS) à faire tourner que de machines
+	- chaque machine prend plusieurs Go d’espace
+
+- Cela peut aussi s’avérer difficile à maintenir : il faut mettre à jour le système d’exploitation de la machine hôte mais aussi celui de chaque machine virtuelle
+
+**De plus, ce n’est pas ce qu’il y a de plus facile à mettre en place.**
+</script></section><section  data-markdown><script type="text/template">
+### C’est à la portée des informaticiens, mais fastidieux, surtout lorsqu’on souhaite simplement tester l’application.
+
+Une solution plus simple est l’utilisation de conteneurs.
+</script></section><section  data-markdown><script type="text/template">## La containerisation
+***
+
+- « Un conteneur est un silo léger qui permet l’exécution d’une application sur le système d’exploitation hôte. Les conteneurs […] contiennent uniquement des applications ainsi que quelques API de système d’exploitation légères […]. <span class="source">Source : microsoft.com</span>
+
+- Autrement dit, un conteneur ne contient pas de système d’exploitation et est réduit au minimum nécessaire pour faire tourner les services (serveur web, base de données…)
+
+- Outils de containerisation : Docker, Podman…
+</script></section><section  data-markdown><script type="text/template">## Les conteneurs - schémas
+***
+
+<p style="line-height: 0" class="reset-paragraph"><img src="NAMO/Notes/Formation NAMO - contents/attachments/container-diagram.svg" alt="" ></img></p>
+
+
+Source : microsoft.com <!-- .element: class="source" -->
+</script></section><section  data-markdown><script type="text/template">## Serveur sur un conteneur
+***
+
+- La containerisation simplifie les étapes précédemment vues dans le cas de l’utilisation d’une machine virtuelle. Le fournisseur de l’application prépare un script (appelé _Dockerfile_) qui n’a plus qu’à être exécuté par l’utilisateur.
+
+- Le titre est un peu faux dans le cas de NAMO GeoWeb. En effet, généralement, **un conteneur = un service**. On crée donc un conteneur pour le serveur web et un pour la base de données de l’application.
+
+**Finalement, est-ce que c’est plus simple qu’une machine virtuelle ?**
+</script></section><section  data-markdown><script type="text/template">
+### Il est possible d’automatiser la création de plusieurs conteneurs avec Docker Compose
+
+Le tout peut s’exécuter en une ligne de commande (si on aime ce genre d’outils) ou en utilisant l’application de bureau Docker.
+</script></section><section  data-markdown><script type="text/template">## Docker et Docker Compose
+***
+
+- Nous allons nous servir de **Docker** comme outil de containerisation
+
+- Sorti en 2013, Docker est actuellement le plus populaire et à l’origine de la standardisation des spécifications des containers
+
+- **Docker Compose** est l’outil de Docker permettant de gérer des applications multi-conteneur
+</script></section><section  data-markdown><script type="text/template">## L’exemple de NAMO GeoWeb
+***
+
+Nous allons nous servir de NAMO GeoWeb pour avoir un aperçu du fonctionnement de Docker et Docker Compose. Ensuite, nous utiliserons Docker Compose pour déployer localement une instance de NAMO GeoWeb.
+
+**Note : Docker Compose est un excellent outil pour tester localement une application web sans avoir à créer de machine virtuelle, mais peut tout aussi bien s’utiliser en production.** <!-- .element: class="fragment fade-in" -->
+</script></section><section  data-markdown><script type="text/template">## NAMO GeoWeb et Docker
+***
+
+Accédez au dépôt [GitHub](https://github.com/GradelerM/NAMOgeoweb-docker). L’arborescence du projet est la suivante :
+
+<pre><code data-line-numbers="1-9|1-3|4-6|7|8|9" >|-apache
+	|-init
+	|-Dockerfile
+|-postgresql
+	|-init
+	|-Dockerfile
+|-.env
+|-README.md
+|-docker-compose.yml
+</code></pre>
+</script></section><section  data-markdown><script type="text/template">### Dockerfile
+
+Prenons l’exemple du Dockerfile de PostgreSQL. Il s’agit du script qui permettra à Docker de créer le conteneur du **serveur de l’application**.
+
+<pre><code data-line-numbers="1-13|1|2|4-5|7-8|10-13" >FROM postgres:13.3
+LABEL maintainer="marie.gradeler@gmail.com"
+
+# Install postGIS
+RUN apt-get update && apt-get install --no-install-recommends -y postgis postgresql-13-postgis-3
+
+# Add shell scripts to execute once the database has been created
+COPY ./init/* /docker-entrypoint-initdb.d/
+
+#clean up
+RUN apt-get -y --purge autoremove &&\
+    apt-get clean &&\
+    rm -rf /var/lib/apt/lists/*
+</code></pre>
+</script></section><section  data-markdown><script type="text/template">### Docker Compose
+
+<pre><code data-line-numbers="1-34|1|3-30|32-34|5-19|6|7|8-15|16-17|18-19" >version: '3.3'
+
+services:
+
+  db:
+    container_name: namo_db
+    build: ./postgresql
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - ADMIN_MAIL=${ADMIN_MAIL}
+      - WEBCONNEXION_PASSWORD=${WEBCONNEXION_PASSWORD}
+    volumes: 
+      - namo-database:/var/lib/postgresql/data
+    ports:
+      - ${POSTGRES_PORT}:5432
+
+  web:
+    container_name: namo_web
+    build: ./apache
+    depends_on:
+      - db
+    volumes: 
+      - namo-web:/var/www/html
+    restart: always
+    ports:
+      - ${APACHE_PORT}:80
+
+volumes: 
+  namo-database:
+  namo-web:
+</code></pre>
+</script></section><section  data-markdown><script type="text/template">## Utilisation
+***
+
+- Cloner le [dépôt GitHub](https://github.com/GradelerM/NAMOgeoweb-docker) ou télécharger l’archive ZIP et l’extraire sur l’ordinateur
+
+- Lancer la commande `docker-compose up` là où se trouve le fichier docker-compose (racine du dossier)
+
+- Croiser les doigts
+
+- Pour stopper le service, lancer la commande `docker-compose down` là où se trouve le fichier docker-compose
+</script></section><section  data-markdown><script type="text/template">### Et maintenant, la pratique !</script></section></div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/math/math.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/customcontrols/plugin.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath.MathJax3,
+		  RevealMermaid,
+		  RevealCustomControls,
+        ],
+
+		mathjax3: {
+			mathjax: 'plugin/math/mathjax/tex-mml-chtml.js',
+		},
+
+		customcontrols: {
+			controls: [
+			]
+		},
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"width":960,"height":700,"margin":0.04,"controls":true,"progress":true,"slideNumber":false,"transition":"slide","transitionSpeed":"default"}, queryOptions);
+    </script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>

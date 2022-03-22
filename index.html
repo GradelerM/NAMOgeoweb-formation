@@ -9,20 +9,45 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;500&display=swap" rel="stylesheet">
-
+        <link href="https://fonts.googleapis.com/css2?family=Lato&family=League+Gothic&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="./styles/styles.css" />
     </head>
 
     <!-- Main content -->
-    <body>
+    <body">
         <!-- Navigation bar -->
         <main id="nav">
-            <ul>
+            <ul class="margins">
                 <li>Formation</li>
                 <li>Ressources</li>
                 <li>Contact</li>
             </ul>
         </main>
-        <p>The content you want to display to users.</p>
+        
+        <!-- Page body -->
+        <div class="wrapper margins">
+
+            <!-- Page header -->
+            <h1 class="page-title">Formation</h1>
+
+            <!-- Page content -->
+            <p>Blablabla</p>
+            <!-- Test iframe -->
+            <iframe id="presentation_formation"
+                    title="Presentation de la formation"
+                    width="600"
+                    height="380"
+                    src="slides/presentation_formation/index.html">
+            </iframe>
+
+            <iframe id="presentation_formation"
+                    title="Presentation de la formation"
+                    width="600"
+                    height="380"
+                    src="slides/presentation_NAMO.pdf">
+            </iframe>
+
+        </div>
+
     </body>
 </html>
