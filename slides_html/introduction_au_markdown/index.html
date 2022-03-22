@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title></title>
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/solarized.css" id="theme" />
+    <link rel="stylesheet" href="plugin/highlight/zenburn.css" />
+	<link rel="stylesheet" href="css/layout.css" />
+	<link rel="stylesheet" href="plugin/customcontrols/style.css">
+
+
+    <script defer src="dist/fontawesome/all.min.js"></script>
+
+	<script type="text/javascript">
+		var forgetPop = true;
+		function onPopState(event) {
+			if(forgetPop){
+				forgetPop = false;
+			} else {
+				parent.postMessage(event.target.location.href, "app://obsidian.md");
+			}
+        }
+		window.onpopstate = onPopState;
+		window.onmessage = event => {
+			if(event.data == "reload"){
+				window.document.location.reload();
+			}
+			forgetPop = true;
+		}
+
+		function fitElements(){
+			const itemsToFit = document.getElementsByClassName('fitText');
+			for (const item in itemsToFit) {
+				if (Object.hasOwnProperty.call(itemsToFit, item)) {
+					var element = itemsToFit[item];
+					fitElement(element,1, 1000);
+					element.classList.remove('fitText');
+				}
+			}
+		}
+
+		function fitElement(element, start, end){
+
+			const size = (end + start) / 2;
+			element.style.fontSize = `${size}px`;
+
+			if(Math.abs(start - end) < 1){
+				return;
+			}
+
+			if(element.scrollHeight > element.offsetHeight){
+				fitElement(element, start, size);
+			} else {
+				fitElement(element, size, end);
+			}		
+		}
+
+
+		document.onreadystatechange = () => {
+			fitElements();
+			if (document.readyState === 'complete') {
+				if (window.location.href.indexOf("?export") != -1){
+					parent.postMessage(event.target.location.href, "app://obsidian.md");
+				}
+				if (window.location.href.indexOf("print-pdf") != -1){
+					let stateCheck = setInterval(() => {
+						clearInterval(stateCheck);
+						window.print();
+					}, 250);
+				}
+			}
+	};
+
+
+        </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">
+
+<style>
+	
+	h4 {
+		opacity: 0.5;
+		font-style: italic;
+	}	
+	
+	p, ul, li {
+		font-size: 1.6rem;
+	}
+	
+	.source {
+		opacity: 0.5;
+		size: 0.5em;
+	}
+</style>
+
+***
+## Introduction au Markdown
+
+<i class="fab fa-markdown fa-6x" ></i>
+
+***
+</script></section><section  data-markdown><script type="text/template">## Introduction au Markdown <i class="fab fa-markdown fa-pull-left"></i>
+***
+
+- Qu’est-ce que Markdown ?
+- Pourquoi s’en sevir ?
+- Les bases de la syntaxe
+</script></section><section  data-markdown><script type="text/template">## Qu’est-ce que Markdown ?
+***
+
+<!-- https://www.markdownguide.org/getting-started/ -->
+
+- Markdown est un langage markup léger qui permet de formater des documents de texte brut.
+
+- Il a été créé par John Gruber en 2004 et est actuellement l’un des langages de markup les plus populaires. D’autres exemples de langages de markup connus sont HTML ou encore XML.
+
+- Il utilise des caractères spéciaux pour indiquer quels élément formater (titres, listes, liens…). Le formatage du document a lieu après la rédaction, au moment de l’export. On parle aussi de **WYSIWYM** (_What you see is what you mean_).
+
+- En cela, il est différent des éditeurs **WYSIWG** ( _What you see is what you get_) comme Microsoft Word, LibreOffice writer, Google Docs…
+
+- Il est aussi différent de la plupart des langages de markup car il a été créé pour être lisible tel quel si on l’ouvre dans un fichier texte.
+
+Source : markdownguide.org <!-- .element: class="source" -->
+</script></section><section  data-markdown><script type="text/template">### Preview (ODT, HTML, MD)
+
+<split even>
+<p style="line-height: 0" class="reset-paragraph"><img src="NAMO/Notes/Formation NAMO - contents/attachments/preview_odt.PNG" alt="" ></img></p>
+
+<p style="line-height: 0" class="reset-paragraph"><img src="NAMO/Notes/Formation NAMO - contents/attachments/preview_html.PNG" alt="" ></img></p>
+
+<p style="line-height: 0" class="reset-paragraph"><img src="NAMO/Notes/Formation NAMO - contents/attachments/preview_md.PNG" alt="" ></img></p>
+
+</split>
+</script></section><section  data-markdown><script type="text/template">### Texte brut (ODT, HTML, MD)
+
+<split even>
+<p style="line-height: 0" class="reset-paragraph"><img src="NAMO/Notes/Formation NAMO - contents/attachments/brut_odt.PNG" alt="" ></img></p>
+
+<p style="line-height: 0" class="reset-paragraph"><img src="NAMO/Notes/Formation NAMO - contents/attachments/brut_html.PNG" alt="" ></img></p>
+
+<p style="line-height: 0" class="reset-paragraph"><img src="NAMO/Notes/Formation NAMO - contents/attachments/brut_md.PNG" alt="" ></img></p>
+
+</split>
+</script></section><section  data-markdown><script type="text/template">## Pourquoi s’en servir ?
+***
+
+<!-- https://www.markdownguide.org/getting-started/ -->
+
+- Markdown peut être utilisé pour presque tout : créer des sites web, des documents, prendre des notes, écrire des livres, réaliser des présentations (comme celle-ci !), écrire des mails, rédiger de la documentation technique…
+
+- Markdown est **portable**. Les fichiers au format .md peuvent être ouverts avec quasiment n’importe quelle application. Si j’utilise Subilme Text pour rédiger en Markdown, je peux ouvrir et éditer mon document avec VSCode, Ghostwriter, Typora, Obsidian, le bloc-notes,…
+
+Source : markdownguide.org <!-- .element: class="source" -->
+</script></section><section  data-markdown><script type="text/template">## Les bases de la syntaxe
+***
+
+<!-- (Voir ce qu’on utilise dans NAMO GeoWeb) -->
+</script></section><section  data-markdown><script type="text/template">### Titres
+
+<split even gap="1">
+	<!-- Syntax -->
+	<pre><code>
+		# Titre 1
+		## Titre 2
+		### Titre 3
+		#### Titre 4
+		##### Titre 5
+		###### Titre 6
+	</code></pre>
+	
+	<!-- Preview -->
+	<div style="font-size: 0.5em;" class="md-preview">
+		<h1>Titre 1</h1>
+		<h2>Titre 2</h2>
+		<h3>Titre 3</h3>
+		<h4>Titre 4</h4>
+		<h5>Titre 5</h5>
+		<h6>Titre 6</h6>
+	</div>
+</split>
+</script></section><section  data-markdown><script type="text/template">### Paragraphes
+
+<split even gap="1">
+	<!-- Syntax -->
+	<pre><code>
+		J’écris simplement du texte, 
+		sans ajouter de tabulation 
+		devant ma première ligne.
+		
+		Il me suffit de sauter une
+		ligne pour créer un 
+		nouveau paragraphe.
+	</code></pre>
+	
+	<!-- Preview -->
+	<div class="md-preview">
+		<p>J’écris simplement du texte, sans ajouter de 
+			tabulation devant ma première ligne.</p>
+		<p>Il me suffit de sauter une ligne pour créer
+			un nouveau paragraphe.</p>
+	</div>
+</split>
+</script></section><section  data-markdown><script type="text/template">### Emphases
+
+<split even gap="1">
+	<!-- Syntax -->
+	<pre><code>
+	Du texte **en gras**
+	Du texte _en italique_
+	Du texte ***en gras et italique***
+	Du `code` dans une phrase
+	</code></pre>
+	
+	<!-- Preview -->
+	<div class="md-preview">
+		<p>Du texte <strong>en gras</strong></p>
+		<p>Du texte <i>en italique</i></p>
+		<p>Du texte <i><strong>en gras et italique</strong></i></p>
+		<p>Du <code>code</code> dans une phrase.
+	</div>
+</split>
+</script></section><section  data-markdown><script type="text/template">### Blockquotes
+
+<split even gap="1">
+	<!-- Syntax -->
+	<pre><code>
+	> Ceci est
+	>
+	> une blockquote
+	</code></pre>
+	
+	<!-- Preview -->
+	<div class="md-preview">
+		<blockquote><p>Ceci est</p><p></p><p>une blockquote</p></blockquote>
+	</div>
+</split>
+</script></section><section  data-markdown><script type="text/template">### Listes
+
+<split even gap="1">
+	<!-- Syntax -->
+	<pre><code>
+	1. une
+	2. liste
+	3. ordonnée
+	
+	- une
+	- liste
+	- non-ordonnée
+	</code></pre>
+	
+	<!-- Preview -->
+	<div class="md-preview">
+		<ol style="display: block;">
+			<li>une</li>
+			<li>liste</li>
+			<li>ordonnée</li>
+		</ol>
+		<br>
+		<ul style="display: block;">
+			<li>une</li>
+			<li>liste</li>
+			<li>non-ordonnée</li>
+		</ul>
+	</div>
+</split>
+</script></section><section  data-markdown><script type="text/template">### Liens
+
+<!-- Syntax -->
+<pre><code>
+	[Cliquez ici](https://www.markdownguide.org/basic-syntax)
+	pour plus d’infos.
+
+</code></pre>
+	
+<!-- Preview -->
+[Cliquez ici](https://www.markdownguide.org/basic-syntax) pour plus d’infos
+</script></section><section  data-markdown><script type="text/template">### Il existe d’autres possibilités en Markdown
+_Ajouter des images, des tableaux, etc._
+
+**Celles que nous avons vues sont celles que nous allons pouvoir utiliser dans l’éditeur de cartes narratives de NAMO GeoWeb.**
+</script></section></div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/math/math.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/customcontrols/plugin.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath.MathJax3,
+		  RevealMermaid,
+		  RevealCustomControls,
+        ],
+
+		mathjax3: {
+			mathjax: 'plugin/math/mathjax/tex-mml-chtml.js',
+		},
+
+		customcontrols: {
+			controls: [
+			]
+		},
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"width":960,"height":700,"margin":0.04,"controls":true,"progress":true,"slideNumber":false,"transition":"slide","transitionSpeed":"default"}, queryOptions);
+    </script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
