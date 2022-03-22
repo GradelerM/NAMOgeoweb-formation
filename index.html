@@ -16,38 +16,318 @@
     <!-- Main content -->
     <body">
         <!-- Navigation bar -->
-        <main id="nav">
-            <ul class="margins">
-                <li>Formation</li>
-                <li>Ressources</li>
-                <li>Contact</li>
-            </ul>
+        <main id="nav" class="paddings-exterior">
+            <h1 id="site-title">Formation NAMO GeoWeb</h1>
+            <div id="menu">
+                <button id="button-formation" class="selected" type="button" onclick="gotoFormation()">Formation</button>
+                <button id="button-resources" type="button" onclick="gotoResources()">Ressources</button>
+                <button id="button-contact" type="button" onclick="gotoContact()">Contact</button>
+            </div>
         </main>
         
-        <!-- Page body -->
-        <div class="wrapper margins">
+        <!-- Page body - formation -->
+        <div id="page-formation" class="page margins">
 
             <!-- Page header -->
-            <h1 class="page-title">Formation</h1>
+            <h1 class="page-title">FORMATION</h1>
+            <hr>
+
+            <!-- TOC -->
+            <div id="toc">
+                <p>Contenus de la formation :</p>
+                <ul>
+                    <li><a href="#section-presentation-formation">Présentation de la formation</a></li>
+                    <li><a href="#section-presentation-plateforme">La plateforme NAMO GeoWeb</a></li>
+                    <li><a href="#section-docker">Docker et Docker Compose</a></li>
+                    <li><a href="#section-markdown">Introduction à Markdown</a></li>
+                    <li><a href="#section-tp">TP : déploiement et utilisation de la carte</a></li>
+                </ul>
+            </div>
+
+            <p>
+                Un mot sur l’utilisation des présentations : vous pouvez naviguer entre les slides en cliquant
+                sur les flèches en bas du cadre. Après avoir cliqué sur une slide, vous pouvez aussi utiliser les
+                flèches du clavier pour naviguer. Presser la touche Echap permet d’afficher le plan des diapos pour
+                naviguer plus rapidement de l’une à l’autre.
+            </p>
+            <p>Les éléments qui ne sont pas directement intégrés dans le site sont téléchargeables au format PDF.</p>
 
             <!-- Page content -->
-            <p>Blablabla</p>
-            <!-- Test iframe -->
-            <iframe id="presentation_formation"
-                    title="Presentation de la formation"
-                    width="600"
-                    height="380"
-                    src="slides/presentation_formation/index.html">
-            </iframe>
+            <h2 id="section-presentation-formation">Présentation de la formation</h2>
 
-            <iframe id="presentation_formation"
+                <p>Un mot sur le contenu de l’intervention et pour me présenter.</p>
+
+                <ul>
+                    <li><a href="https://github.com/GradelerM/NAMOgeoweb-formation" target="_blank">Accéder aux ressources sur GitHub de la formation</a></li>
+                    <li><a href="https://github.com/GradelerM/NAMOgeoweb" target="_blank">Le GitHub de NAMO GeoWeb</a></li>
+                </ul>
+
+                <iframe id="slides-presentation-formation"
                     title="Presentation de la formation"
-                    width="600"
-                    height="380"
-                    src="slides/presentation_NAMO.pdf">
-            </iframe>
+                    src="slides/presentation_formation/index.html">
+                </iframe>
+                <br>
+                <a href="slides/presentation_formation/index.html" target="_blank">Ouvrir dans un nouvel onglet</a>
+
+            <h2 id="section-presentation-plateforme">La plateforme NAMO GeoWeb</h2>
+
+                <p>
+                    Contenu : présentation de la plateforme NAMO GeoWeb. Comment elle a été imaginée, pour répondre
+                    à quels besoins, comment est-elle structurée, comment s’utilise-t-elle et pour quels usages, etc. 
+                </p>
+
+                <ul>
+                    <li><a href="slides/presentation_NAMO.pdf" target="_blank">Accéder aux diapos</a></li>
+                    <li><a href="https://resteaur-lag.teledetection.fr/map/map.php" target="_blank">NAMO GeoWeb pour le projet RestEAUr’Lag</a></li>
+                    <li><a href="https://rivage-guadeloupe.teledetection.fr/map/map.php" target="_blank">NAMO GeoWeb pour le projet Rivage Guadeloupe</a></li>
+                </ul>
+
+            <h2 id="section-docker">Docker et Docker Compose</h2>
+
+                <p>
+                    Un mot sur les applications web, les machines virtuelles et la containerisation. 
+                    Présentation de Docker comme outil de containerisation et de Docker Compose pour gérer plusieurs 
+                    containers à la fois, avec l’exemple du code de NAMO GeoWeb.
+                </p>
+
+                <ul>
+                    <li><a href="https://github.com/GradelerM/NAMOgeoweb" target="_blank">Le GitHub de NAMO GeoWeb</a></li>
+                    <li><a href="https://github.com/GradelerM/NAMOgeoweb-docker" target="_blank">Le GitHub de NAMO GeoWeb Docker</a></li>
+                </ul>
+
+                <iframe id="slides-docker-and-compose"
+                    title="Introduction Docker et Docker Compose"
+                    src="slides/namo_docker/index.html/">
+                </iframe>
+                <br>
+                <a href="slides/namo_docker/index.html" target="_blank">Ouvrir dans un nouvel onglet</a>
+
+            <h2 id="section-markdown">Introduction à Markdown</h2>
+
+                <p>
+                    Une rapide introduction sur Markdown que nous allons utiliser pour rédiger des cartes narratives dans NAMO GeoWeb.
+                </p>
+
+                <ul>
+                    <li><a href="https://www.markdownguide.org/getting-started/" target="_blank">Le site Markdown Guide (Anglais)</a></li>
+                    <li><a href="https://docs.zettlr.com/fr/reference/markdown-basics/" target="_blank">La documentation Zettlr sur les bases de Markdown (Français)</a></li>
+                    <li><a href="https://dillinger.io/" target="_blank">Dillinger.io, un éditeur de Markdown en ligne</a></li>
+                </ul>
+
+                <iframe id="slides-markdown"
+                    title="Introduction Markdown"
+                    src="slides/introduction_au_markdown/index.html">
+                </iframe>
+                <br>
+                <a href="slides/introduction_au_markdown/index.html" target="_blank">Ouvrir dans un nouvel onglet</a>
+
+            <h2 id="section-tp">TP : déploiement et utilisation de l’application</h2>
+
+            <p>
+                Un TP pour apprendre à déployer une instance de NAMO GeoWeb avec Docker et Docker Compose, puis prendre l’application en main 
+                pour publier une carte narrative. <a href="slides/TP - prise en main de NAMO GeoWeb.pdf" target="_blank">Accédez au PDF du TP ici.</a>
+            </p>
+
+            <!-- Export Obsidian -->
+            <div id="tp">
+
+                <h2 data-heading="Préparation du TP">Préparation du TP</h2>
+                <p>Avant de commencer à manipuler l’application, il est conseillé de préparer des données à y ajouter (c’est plus intéressant d’avoir un vrai narratif à mettre en forme).</p>
+                <p>Pour bien préparer sa carte narrative pour NAMO GeoWeb, il faut un jeu de données ou bien une thématique que vous souhaitez mettre en avant, puis préparer&nbsp;:</p>
+                <ul>
+                <li>le titre de la carte narrative et un résumé (c’est bien si elle contient au minimum trois cartes)</li>
+                <li>des cartes préparées sous QGIS et mises en ligne sur LizMap (ou tout autre serveur cartographique accessible en ligne)</li>
+                <li>du texte explicatif, et éventuellement des images, pour accompagner chaque carte</li>
+                </ul>
+                <p>Vous pouvez trouver plusieurs exemples de cartes narratives aux adresses suivantes&nbsp;:</p>
+                <ul>
+                <li><a aria-label-position="top" aria-label="https://resteaur-lag.teledetection.fr/map/map.php" rel="noopener" class="external-link" href="https://resteaur-lag.teledetection.fr/map/map.php" target="_blank">RestEAUr’Lag</a></li>
+                <li><a aria-label-position="top" aria-label="https://rivage-guadeloupe.teledetection.fr/" rel="noopener" class="external-link" href="https://rivage-guadeloupe.teledetection.fr/" target="_blank">Rivage Guadeloupe</a></li>
+                <li><a aria-label-position="top" aria-label="https://ec-paysage.teledetection.fr/map/map.php" rel="noopener" class="external-link" href="https://ec-paysage.teledetection.fr/map/map.php" target="_blank">Ecole chercheurs TETIS</a></li>
+                </ul>
+                <hr>
+                <h2 data-heading="Déploiement de NAMO GeoWeb sur les postes">Déploiement de NAMO GeoWeb sur les postes</h2>
+                <h3 data-heading="Récupération">Récupération</h3>
+                <p>Les instructions d’installation détaillées sont disponibles sur le GitHub du projet (<a rel="noopener" class="external-link" href="https://github.com/GradelerM/NAMOgeoweb-docker" target="_blank">https://github.com/GradelerM/NAMOgeoweb-docker</a>). </p>
+                <p><em>Le déploiement de NAMO GeoWeb sur un poste local nécessite d’avoir installé au préalable Docker et Docker Compose.</em></p>
+                <p>Commencez par récupérer les fichiers du dépôt. Vous avez deux possibilités&nbsp;:</p>
+                <ul>
+                <li>ouvrir le terminal dans le répertoire de votre choix et cloner le dépôt avec la commande <code>git clone https://github.com/GradelerM/NAMOgeoweb-docker</code> (nécessite d’avoir Git installé sur la machine)</li>
+                <li>télécharger les fichiers zippés (bouton <em>Code</em> en haut à droite, cliquer sur <em>Download ZIP</em>) et les dézipper dans le répertoire de votre choix</li>
+                </ul>
+                <p>Ensuite, vous avez la possibilité de personnaliser votre instance de NAMO GeoWeb (voir <strong><em>Personnalisation</em></strong>) ou de directement lancer l’application avec des paramètres par défaut (voir <strong><em>Démarrer le service</em></strong>).</p>
+                <h3 data-heading="Personnalisation">Personnalisation</h3>
+                <p>Cette étape est optionelle pour le TP mais vivement recommandée car elle vous permettra de comprendre comment personnaliser NAMO GeoWeb avant de déployer l’application. Les options de personnalisation sont détaillées sur la page du <a aria-label-position="top" aria-label="https://github.com/GradelerM/NAMOgeoweb-docker" rel="noopener" class="external-link" href="https://github.com/GradelerM/NAMOgeoweb-docker" target="_blank">GitHub du projet</a>. Attention, mal éditer certains des paramètres pourrait prévenir le bon fonctionnement du service, voir son démarrage complet. Voici certains des paramètres que vous pouvez éditer&nbsp;:</p>
+                <h4 data-heading="Dans le fichier .env">Dans le fichier .env</h4>
+                <ul>
+                <li><code>ADMIN_USERNAME</code> et <code>ADMIN_PASSWORD</code> qui sont respectivement le nom d’utilisateur et le mod de passe avec lequel vous allez vous connecter à l’application.</li>
+                </ul>
+                <h4 data-heading="Dans le fichier apache/init/config.php">Dans le fichier apache/init/config.php</h4>
+                <p><strong>Nom et informations sur le projet</strong></p>
+                <ul>
+                <li><code>$project_name</code> est le nom que vous souhaitez donner à votre projet. Celui-ci apparaît à divers endroits dans l’application.</li>
+                <li><code>about.html</code> est un fichier qui contient le texte qui sera visible dans l’onglet <em>A propos</em> de votre instance de NAMO GeoWeb</li>
+                </ul>
+                <p><strong>Modifier le logo de l’application</strong></p>
+                <ul>
+                <li>placez les images dans le dossier <code>apache/init/optional/logos</code></li>
+                <li>indiquez leurs nom (AVEC leur extension) dans <code>$vertical_logo</code> et <code>$horizontal_logo</code></li>
+                </ul>
+                <h4 data-heading="Dans le fichier apache/init/optional/palette.css">Dans le fichier apache/init/optional/palette.css</h4>
+                <p><strong>Modifier les couleurs de l’application</strong><br>
+                Vous avez aussi la possibilité de modifier les couleurs de l’application dans le fichier <code>/apache/init/optional/palette.css</code>. Les variables avec la mention <code>hover</code> indiquent un changement de couleur au survol avec la souris.</p>
+                <p><em>Exemple&nbsp;: <code>--main</code> correspond à la couleur dominante de l’application et s’applique par exemple au bouton "Se connecter". <code>--main-hover</code> doit être une version plus sombre de <code>--main</code> pour assombrir le bouton quand l’utilisateur passe dessus avec sa souris.</em></p>
+                <h4 data-heading="Dans le fichier apache/init/optional/regions_of_interest.html">Dans le fichier apache/init/optional/regions_of_interest.html</h4>
+                <p>Si vous avez préparé votre narratif à l’avance, il vous est possible d’ajouter des ROI, appelées <em>Zones d’étude</em> dans l’application. Il s’agit d’un raccourci qui permet de zoomer sur une zone prédéfinie (voir l’exemple de <a aria-label-position="top" aria-label="https://resteaur-lag.teledetection.fr/map/map.php" rel="noopener" class="external-link" href="https://resteaur-lag.teledetection.fr/map/map.php" target="_blank">RestEAUr’Lag</a>).</p>
+                <p>Pour ce faire, accédez d’abord à <a aria-label-position="top" aria-label="https://www.openstreetmap.org/#map=4/30.83/-18.90" rel="noopener" class="external-link" href="https://www.openstreetmap.org/#map=4/30.83/-18.90" target="_blank">OpenStreetMap</a> et définissez l’emprise de la carte sur la zone souhaitée. Ensuite&nbsp;:</p>
+                <ul>
+                <li>effectuez une capture d’écran que vous nommez <code>empriseWorld_thumbnail</code> et sauvegardez-la dans le répertoire <code>/apache/init/optional/thumbnails/</code></li>
+                <li>récupérez les coordonnées du centre et le niveau de zoom tels que visibles dans l’url d’OpenStreetMap </li>
+                </ul>
+                <pre><code>https://www.openstreetmap.org/#map=&lt;zoom&gt;/&lt;latitude&gt;/&lt;longitude&gt;
+                </code></pre>
+                <p>Pour ajouter ces informations dans l’application, allez dans <code>apache</code>/<code>init</code>/<code>optional</code>/<code>regions_of_interest.html</code> et apportez les modifications décrites ci-dessous&nbsp;:</p>
+                <ul>
+                <li>ligne 8&nbsp;-&gt; remplacez <code>Mappemonde</code> par le nom de la zone d’étude que vous avez définie</li>
+                <li>ligne 13 -&gt; vérifiez que l’extension de <code>empriseWorld_thumbnail</code> est la bonne. Si vous avez enregistré votre image dans un format autre que PNG, alors remplacez <code>.png</code> par le nom de l’extension choisie</li>
+                <li>ligne 28&nbsp;-&gt; remplacez <code>2</code> par votre zoom, <code>-17.2</code> par votre longitude et <code>43.6</code> par votre latitude : </li>
+                </ul>
+                <pre><code>var empriseWorld = [ol.proj.fromLonLat([&lt;longitude&gt;,&lt;latitude&gt;), &lt;zoom&gt;];
+                </code></pre>
+                <p>N’oubliez pas de sauvegarder vos modifications avant de passer à l’étape suivante.</p>
+                <h3 data-heading="Démarrer le service">Démarrer le service</h3>
+                <p>Pour démarrer le service, ouvrez un terminal à la racine du projet, là où se trouve le fichier <code>docker-compose.yml</code> et taper la commande <code>docker-compose up</code>.</p>
+                <p>Attendez ensuite jusqu’à ce que vous voyez apparaître dans le terminal la mention <code>database system is ready to accept connections</code>. Accédez ensuite à <code>localhost:8081</code> dans le navigateur de votre choix pour accéder à l’application.</p>
+                <p><em>Attention&nbsp;: Si vous avez modifié le port sur lequel est servie l’application (<code>APACHE PORT</code>) dans <code>.env</code>, rendez-vous à l’adresse <code>localhost:&lt;mon_port&gt;</code>.</em></p>
+                <hr>
+                <h2 data-heading="Utilisation de NAMO GeoWeb">Utilisation de NAMO GeoWeb</h2>
+                <p>Maintenant que l’application est prête à être utilisée, cliquez sur <em>Accéder à la carte</em>. Avant de commencer à manipuler l’application, si vous avez personnalisé vos fichier, vérifiez les points suivants&nbsp;:</p>
+                <ul>
+                <li>si vous avez ajouté un à propos, vérifiez que son contenu apparaît bien dans <em>A propos</em> (en haut à gauche de l’écran)</li>
+                <li>si vous avez modifié le logo, vérifiez qu’il apparaît bien en haut à gauche de l’écran</li>
+                <li>si vous avez modifié la palette de couleurs, vérifiez que les changements on bien été appliqués (onglet sélectionné dans la barre de menu à gauche, boutons de connexion en haut à droite)</li>
+                <li>si vous avez modifié la zone d’étude, vérifiez qu’elle apparaît bien dans l’onglet <em>Zones d’étude</em> avec le bon nom, la bonne miniature, et que cliquer sur l’image permet bien de zoomer sur la zone définie</li>
+                </ul>
+                <p>Si vous le souhaitez, prenez un moment pour vous famliariser avec l’interface de l’application en naviguant sur la carte et entre les différents onglets.</p>
+                <p>Ensuite, connectez vous en utilisant le bouton <em>Se connecter</em> en haut à gauche. Le nom d’utilisateur et le mot de passe correspondent aux variables <code>ADMIN_USERNAME</code> et <code>ADMIN_PASSWORD</code> du fichier <code>.env</code>. Si vous ne les avez pas éditées, alors le nom d’utilisateur et le mot de passe sont tous les deux <code>namoadmin</code>.</p>
+                <p>Si la connexion a fonctionné, vous devriez voir apparaître plusieurs changements dans le menu en haut de l’application&nbsp;:</p>
+                <ul>
+                <li>un lien <em>Contribuer</em></li>
+                <li>un lien <em>Administration</em></li>
+                <li>votre nom d’utilisateur</li>
+                <li>un bouton <em>Se déconnecter</em></li>
+                </ul>
+                <p>Nous allons maintenant ajouter des données à l’application pour pouvoir afficher des cartes dans notre récit.</p>
+                <h3 data-heading="Ajouter des données">Ajouter des données</h3>
+                <p>Cliquez sur <em>Administration</em> pour accéder à l’interface administrateur. Elle est présentée en détail sur le wiki&nbsp;: <a rel="noopener" class="external-link" href="https://github.com/GradelerM/NAMOgeoweb/wiki/Administrator-interface" target="_blank">https://github.com/GradelerM/NAMOgeoweb/wiki/Administrator-interface</a>.</p>
+                <p>En utilisant les instructions de la documentation, commencez par <a aria-label-position="top" aria-label="https://github.com/GradelerM/NAMOgeoweb/wiki/Administrator-interface#ajouter-une-source" rel="noopener" class="external-link" href="https://github.com/GradelerM/NAMOgeoweb/wiki/Administrator-interface#ajouter-une-source" target="_blank">ajouter une nouvelle source</a>. Si vous n’avez pas effectué la préparation au TP, vous pouvez chercher d’autres sources de données en ligne, par exemple <a aria-label-position="top" aria-label="https://demo.lizmap.com/lizmap/index.php/view/map/?repository=demo&amp;project=pprn_montpellier" rel="noopener" class="external-link" href="https://demo.lizmap.com/lizmap/index.php/view/map/?repository=demo&amp;project=pprn_montpellier" target="_blank">dans cet exemple de projet LizMap</a>. Si vous utilisez LizMap, vous trouver l’url <code>getCapabilites</code> dans l’onglet <em>Informations</em> (<strong><em>i</em></strong> dans le menu de gauche), rubrique <em>Services WMS</em>. Récupérez l’url <em>WMS</em>.</p>
+                <p>Si l’ajout de la source a fonctionné, alors <a aria-label-position="top" aria-label="https://demo.lizmap.com/lizmap/index.php/lizmap/service/?repository=demo&amp;project=pprn_montpellier&amp;SERVICE=WMS&amp;VERSION=1.3.0&amp;REQUEST=GetCapabilities" rel="noopener" class="external-link" href="https://github.com/GradelerM/NAMOgeoweb/wiki/Administrator-interface#ajouter-une-couche" target="_blank">ajoutez une nouvelle couche</a> à partir de cette source.</p>
+                <p>Une fois la première couche ajoutée, retournez sur votre carte (l’onglet doit être resté ouvert) et actualisez la page. Vous devriez voir votre couche apparaître dans l’onglet <em>Couches</em>. Cochez-la pour vérifier qu’elle apparaît sur la carte et que la légende s’affiche en bas à droite de l’écran.</p>
+                <p>Prenez un moment pour ajouter d’autres couches et explorer l’interface d‘administration. Vous pouvez par exemple&nbsp;:</p>
+                <ul>
+                <li>créer un nouveau thème dans l’onglet <em>Thèmes</em> pour y ranger vos couches de données</li>
+                <li>éditer le nom d’une couche dans l’onglet <em>Couches</em></li>
+                <li>créer une nouvelle collection dans l’onglet <em>Collections</em> pour y ajouter votre carte narrative</li>
+                </ul>
+                <h4 data-heading="Rédiger une carte narrative">Rédiger une carte narrative</h4>
+                <p>Une fois les données ajoutées et visibles sur la carte, il est temps de rédiger et publier notre carte narrative. Depuis la carte, cliquez sur <em>Contribuer</em>. L’outil de rédaction s’ouvre dans un nouvel onglet.</p>
+                <p>Appuyez-vous sur la documentation (<a rel="noopener" class="external-link" href="https://github.com/GradelerM/NAMOgeoweb/wiki/Storytool-interface" target="_blank">https://github.com/GradelerM/NAMOgeoweb/wiki/Storytool-interface</a>) pour réaliser les étapes suivantes. Il est conseillé de lire la section sur <a aria-label-position="top" aria-label="https://github.com/GradelerM/NAMOgeoweb/wiki/Storytool-interface#Le-statut-dune-carte-narrative" rel="noopener" class="external-link" href="https://github.com/GradelerM/NAMOgeoweb/wiki/Storytool-interface#Le-statut-dune-carte-narrative" target="_blank">le statut d’une carte narrative</a> avant de passer à la suite.</p>
+                <h5 data-heading="Informations">Informations</h5>
+                <p>Commencez par créer une nouvelle carte narrative en cliquant sur <em>Ajouter une nouvelle carte narrative</em>.</p>
+                <p>Dans l’onglet <em><a aria-label-position="top" aria-label="https://github.com/GradelerM/NAMOgeoweb/wiki/Storytool-interface#Le-statut-dune-carte-narrative" rel="noopener" class="external-link" href="https://github.com/GradelerM/NAMOgeoweb/wiki/Storytool-interface#Informations" target="_blank">Informations</a></em>, donnez-lui un titre, choisissez une collection dans laquelle la ranger, donnez-lui un résumé et ajoutez éventuellement des mentions légales.</p>
+                <h5 data-heading="L’avant-propos">L’avant-propos</h5>
+                <p>Accédez ensuite à l’onglet <em><a aria-label-position="top" aria-label="https://github.com/GradelerM/NAMOgeoweb/wiki/Storytool-interface#Le-statut-dune-carte-narrative" rel="noopener" class="external-link" href="https://github.com/GradelerM/NAMOgeoweb/wiki/Storytool-interface#%C3%89diteur" target="_blank">Editeur</a></em> et cliquez sur <em>Avant-propos</em> pour faire apparaître le reste de l’éditeur.</p>
+                <p>Cliquez sur le bloc <em>Texte</em> pour ajouter un avant-propos à votre carte narrative. Il peut faire office d’introduction. Il ne peut contenir que du texte, pas d’images. Cette partie se rédige au format Markdown. Si vous avez besoin d’aide pour utilisez la syntaxe, cliquez sur <em>Aide</em> en haut à droite du bloc de texte.</p>
+                <p>Une fois que vous avez fini d’écrire, cliquez en dehors du bloc. Le texte est sauvegardé automatiquement et vous avez un aperçu de votre Markdown mis en forme.</p>
+                <p>Ensuite, préparez votre carte dans la partie de droite. Définissez son emprise en indiquant le centre et le niveau de zoom (vous pouvez les définir en scrollant et zoomant sur l’apercu, il est interactif).</p>
+                <p>Choisissez ensuite un fond de carte parmi ceux disponibles.</p>
+                <p>Enfin, cliquez sur le <strong><em>+</em></strong> pour ajouter une nouvelle couche à la carte. Choisissez-la dans la liste déroulante parmi les couches de données que vous avez déjà ajoutées à la carte depuis l’onglet d’administration.</p>
+                <p><em>Astuce&nbsp;: si vous avez ajouté une couche en trop, vous pouvez la retirer en cliquant sur le symbole d’engrenage à droite. Notez-aussi que l’ordre dans lequel les couches sont ajoutées n’affecte par leur ordre d’affichage sur la carte.</em></p>
+                <h5 data-heading="Ajouter un chapitre">Ajouter un chapitre</h5>
+                <p>Une fois l’avant-propos terminé, cliquez sur le <strong><em>+</em></strong> dans le <em>Déroulé de ma carte narrative</em> (à droite de l’écran) pour ajouter un nouveau chapitre et cliquez dessus pour l’ouvrir dans l’éditeur.</p>
+                <p>Commencez par lui donner un titre en remplissant le champ <em>Mon chapitre</em>. Vous pouvez aussi d’ores et déjà préparer votre carte avec l’outil à droite.</p>
+                <p>Vous constaterez qu’au centre, la partie servant à ajouter du contenu est différente. Commencez par ajouter du texte en sélectionnant <em>Texte format Markdown</em> et en cliquant sur <em>Ajouter</em>. Un nouveau bloc de texte est apparu. Vous pouvez l’éditer comme à l’étape précédente.</p>
+                <p>Ajouter ensuite un nouveau bloc de texte dans lequel vous écrirez simplement "Texte". Avez la souris, saisissez ensuite ce bloc pour le déplacer au-dessus du premier. <strong>Vous noterez qu’il est ainsi possible de réorganiser les éléments d’un chapitre avec un glisser-déposer.</strong> Cette méthode s’applique aussi à la liste des chapitres à gauche de l’écran. Créez un nouveau chapitre et déplacez-le au-dessus du votre. Lorsque vous avez terminé, utilisez les symboles d’engrenages pour supprimer le bloc "Test" et le nouveau chapitre vide.</p>
+                <p>Ensuite, nous allons ajouter une image. Là où <em>Texte format Markdown</em> est indiqué, sélectionnez <em>Image interne JPG, JPEG, PNG, GIF</em> et cliquez sur <em>Ajouter</em>. Un bloc image vide apparaît dans le déroulé de votre narration. Cliquez sur le bouton <em>Parcourir</em> pour aller chercher l’image dans vos dossiers et l’uploader. Attention, vous pourriez recevoir un message d’erreur si le poids de votre image est trop élevé, il faudra alors la compresser. Enfin, ajoutez une légende en cliquant sur <em>Cliquez ici pour ajouter du contenu</em>.</p>
+                <p>Vous savez maintenant comment ajouter du contenu à une carte narrative. Continuez à ajouter du contenu comme vous le souhaitez avant de passer à la suite.</p>
+                <h5 data-heading="Aperçu">Aperçu</h5>
+                <p>L’<a aria-label-position="top" aria-label="https://github.com/GradelerM/NAMOgeoweb/wiki/Storytool-interface#Le-statut-dune-carte-narrative" rel="noopener" class="external-link" href="https://github.com/GradelerM/NAMOgeoweb/wiki/Storytool-interface#Aperçu" target="_blank">aperçu</a> vous permet de visualiser votre carte narrative avant de la publier. Notez qu’un bug encore non corrigé cause l’apparition d’une légende même sur une carte sans couches&nbsp;: ignorez la, elle n’apparaît pas sur la carte publiée.</p>
+                <p>La section de gauche contient le récit que vous avez rédigé, avec votre texte et vos images. La section de droite contient la carte et la légende. La carte reste interactive&nbsp;: vous pouvez toujours zoomer ou vous déplacer dessus.</p>
+                <p>Essayez d’utiliser les éléments dans la barre de menu au-dessus du texte pour voir à quoi ils servent. Ensuite, pour consulter votre carte narrative, placez le curseurs au-dessus du texte et faites-le défiler comme n’importe quelle page web. Vous verrez qu’au moment de changer de chapitre, la carte et la légende se mettront elles-aussi à jour.</p>
+                <h5 data-heading="Publication">Publication</h5>
+                <p>Une fois que vous vous êtes assurés que le récit vous convient, rendez-vous dans l’onglet publication. Ici, vous pouvez choisir l’état de votre carte narrative. Sélectionnez <em>Publiée</em> puis retournez sur la carte et actualisez la page. La carte narrative devrait maintenant être accessible, même si vous vous déconnectez de votre compte.</p>
+                <h3 data-heading="S’il vous reste du temps">S’il vous reste du temps</h3>
+                <p>Voici une série de manipulations à effectuer, s’il vous reste du temps, pour approfondir votre connaissance de la plateforme.</p>
+                <ul>
+                <li>Essayez d’éditer une carte narrative déjà publiée. Quel message obtenez-vous&nbsp;? Éditez cette carte et publiez-la à nouveau.</li>
+                <li>Déconnectez-vous, puis cliquer sur le bouton <em>S’inscrire</em> et créez un nouvel utilisateur fictif. Inutile de lui donner une véritable adresse mail, l’envoi de mails ne fonctionnera pas pour le moment. Ensuite, reconnectez-vous en tant qu’administrateur et allez dans l’interface d’administration pour autoriser le nouvel utilisateur à accéder à l’application, ou bien pour le refuser.</li>
+                <li>Créez un nouvel utilisateur pour chaque rôle disponible dans l’application (voir <a aria-label-position="top" aria-label="https://github.com/GradelerM/NAMOgeoweb/wiki/Administrator-interface#Utilisateurs" rel="noopener" class="external-link" href="https://github.com/GradelerM/NAMOgeoweb/wiki/Administrator-interface#Utilisateurs" target="_blank">la documentation</a>). Ensuite, connectez-vous avec chacun de ces utilisateurs pour vérifier ce qu’il vous est possible de faire ou non en fonction de votre rôle.</li>
+                <li>En étant connecté comme un <code>contributeur</code>, créez une nouvelle carte narrative et ajoutez-y quelques éléments. Essayez de publier la carte. Qu’est-ce qui a changé&nbsp;?</li>
+                <li>Après avoir défini la carte comme étant <em>En attente de publication</em>, connectez vous en tant que <code>editeur</code> ou <code>administrateur</code> et accédez à l’outil de <em>Contribution</em>. Retrouvez-vous la carte narrative du contributeur&nbsp;? Apportez-y une ou deux modifications puis publiez-la.</li>
+                </ul>
+            </div>
+
+            <!-- Fin export Obsidian -->
 
         </div>
 
+        <!-- Page body - resources -->
+        <div id="page-resources" class="page margins hidden">
+
+                <!-- Page header -->
+                <h1 class="page-title">RESSOURCES</h1>
+                <hr>
+    
+                <!-- Page content -->
+
+        </div>
+
+        <!-- Page body - contact -->
+        <div id="page-contact" class="page margins hidden">
+
+            <!-- Page header -->
+            <h1 class="page-title">CONTACT</h1>
+            <hr>
+
+            <!-- Page content -->
+
+        </div>
+
+        <!-- Import JavaScript -->
+        <script>
+            let currentPage = 'page-formation';
+
+            function showPage(page) {
+                document.getElementById('button-'+ page).classList.add('selected');
+                document.getElementById('page-'+ page).classList.remove('hidden');
+            }
+
+            function hidePage(page) {
+                document.getElementById('button-' + page).classList.remove('selected');
+                document.getElementById('page-' + page).classList.add('hidden');
+            }
+
+            function gotoFormation() {
+                hidePage('contact');
+                hidePage('resources');
+                showPage('formation');
+            };
+
+            function gotoResources() {
+                hidePage('formation');
+                hidePage('contact');
+                showPage('resources');
+            };
+
+            function gotoContact() {
+                hidePage('formation');
+                hidePage('resources');
+                showPage('contact');
+            };
+
+
+        </script>
+
     </body>
+    <footer></footer>
 </html>

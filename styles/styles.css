@@ -2,6 +2,7 @@
     --main: #586E75;
     --black: #161F22;
     --light: #FDF6E3;
+    --darker-light: #ccbaa0;
     --link: #268BD2;
 }
 
@@ -13,11 +14,54 @@ html, body {
     box-sizing: border-box;
 
     font-family: 'Inconsolata', monospace;
+    /* font-family: 'Lato', sans-serif; */
     color: var(--black);
+    line-height: 1.6;
 }
 
 body {
     background-color: var(--light);
+}
+
+footer {
+    height: 20em;
+    width: 100%;
+}
+
+hr {
+    border-top: 1px;
+}
+
+iframe {
+   border: none;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+   height: 480px;
+   width: 800px;
+}
+
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0.4em 1em;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+button.selected {
+    color: var(--main);
+    background-color: var(--light);
+}
+
+a {
+    color: var(--link);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
 }
 
 /* Fonts */
@@ -36,13 +80,24 @@ body {
 
 /* Spacing */
 .margins {
-    margin-left: 12em;
-    margin-right: 12em;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.paddings-exterior {
+    padding-left: 0em;
+    padding-right: 0em;
 }
 
 /* Nav */
 
 #nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--light);
     background-color: var(--main);
 }
 
@@ -51,20 +106,59 @@ body {
     margin-bottom: 0;
 }
 
+#site-title {
+    font-size: 1.4em;
+    flex-shrink: 0;
+}
+
+#menu {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5em;
+}
+
 /* Page */
 
-.wrapper {
-
+#toc > p {
+    margin-bottom: 6px;
 }
 
 .page-title {
     font-family: 'League Gothic', sans-serif;
     font-size: 3em;
     color: var(--main);
+    margin-top: 0.4em;
+    margin-bottom: 0em;
 }
 
-.page-content {
+.page h2 {
+    margin-top: 1.2em;
+    margin-bottom: 0.2em;
+    font-family: 'League Gothic', sans-serif;
+    font-size: 2.6em;
+    color: var(--main);
+}
 
+#tp h2,
+#tp h3 {
+    font-family: 'Inconsolata', monospace;
+    color: var(--main);
+}
+
+#tp h2 {
+    font-size: 2em;
+}
+
+#tp h3 {
+    font-size: 1.4em;
+}
+
+#tp h4 {
+    font-size: 1.2em;
+}
+
+#tp h5 {
+    font-size: 1em;
 }
 
 /* 
@@ -77,13 +171,63 @@ Media queries
 @media (min-width: 640px) {  }
 
 /* md */
-@media (min-width: 768px) {  }
+@media (min-width: 768px) {
+    .margins {
+        margin-left: 2em;
+        margin-right: 2em;
+    }
+
+    .paddings-exterior {
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+}
 
 /* lg */
-@media (min-width: 1024px) {  }
+@media (min-width: 1024px) {
+    .margins {
+        margin-left: 6em;
+        margin-right: 6em;
+    }
+
+    .paddings-exterior {
+        padding-left: 6em;
+        padding-right: 6em;
+    }
+}
 
 /* xl */
-@media (min-width: 1280px) {  }
+@media (min-width: 1280px) {
+    .margins {
+        margin-left: 16em;
+        margin-right: 16em;
+    }
+
+    .paddings-exterior {
+        padding-left: 16em;
+        padding-right: 16em;
+    }
+}
 
 /* 2xl */
-@media (min-width: 1536px) {  }
+@media (min-width: 1536px) {
+    .margins {
+        margin-left: 24em;
+        margin-right: 24em;
+    }
+
+    .paddings-exterior {
+        padding-left: 24em;
+        padding-right: 24em;
+    }
+
+    /* #toc {
+        position: absolute;
+        top: 4em;
+        left: 1em;
+    }
+
+    #toc > ul {
+        padding-left: 0;
+    } */
+}
