@@ -8,5 +8,5 @@ Ce dépôt contient les supports de la formation NAMO GeoWeb.
     - introduction à Docker et Docker-compose
     - introduction à Markdown
 
-Pour plus de confort, il est recommandé d’accéder aux support de formation via le site : https://gradelerm.github.io/NAMOgeoweb-formation/
+Pour plus de confort, il est recommandé d’accéder aux supports de formation via le site : https://gradelerm.github.io/NAMOgeoweb-formation/
 
